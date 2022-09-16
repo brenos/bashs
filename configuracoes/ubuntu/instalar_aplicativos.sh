@@ -39,16 +39,16 @@ echo
 echo "------"
 echo
 
-echo "Instalando git.."
+echo "Instalando zsh.."
 echo "---------------------"
 echo
 
-if apt install git;
+if apt install zsh;
 then
     echo
-    echo "Git instalados.."
+    echo "Zsh instalados.."
 else
-    echo "Erro ao instalar git.."
+    echo "Erro ao instalar zsh.."
     exit 1
 fi
 
@@ -69,8 +69,3 @@ else
     exit 1
 fi
 
-echo
-echo
-echo "--== INSTALAR DISCORD E BRAVE PELA LOJA ==--"
-echo
-echo

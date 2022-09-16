@@ -74,7 +74,7 @@ echo
 
 echo "Instalando Postgre no docker.."
 
-if sudo docker run --name postgres -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres;
+if docker run --name postgres -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres;
 then
     echo "Postgre instalado no docker.."
 else

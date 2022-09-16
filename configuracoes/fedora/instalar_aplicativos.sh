@@ -21,7 +21,7 @@ echo
 echo "Instalando zsh.."
 
 if dnf install zsh \
-&& usermod -s $(which zsh) $USER;
+&& usermod -s "$(which zsh)" $USER;
 then
     echo "Zsh instalado.."
 else

@@ -5,6 +5,25 @@ echo "Apps Dev"
 echo "-----------"
 
 echo
+echo "Instalando git.."
+echo "---------------------"
+echo
+
+if apt install git;
+then
+    git config --global user.name "brenos"
+    git config --global user.email "soubreno@gmail.com"
+    echo
+    echo "Git instalado.."
+else
+    echo "Erro ao instalar git.."
+    exit 1
+fi
+
+echo
+echo "------"
+echo
+
 echo "Instalando VS Code.."
 echo "---------------------"
 echo
@@ -47,22 +66,22 @@ echo
 echo "------"
 echo
 
-#echo "Instalando DBeaver.."
+echo "Instalando DBeaver.."
 
-#if [[ $2 != "" ]];
-#then
-#    if ./$2;
-#    then
-#        echo "DBeaver instalado.."
-#    else
-#        echo "Erro ao instalar DBeaver.."
-#        exit 1
-#    fi
-#fi
+if [[ $2 != "" ]];
+then
+    if ./$2;
+    then
+        echo "DBeaver instalado.."
+    else
+        echo "Erro ao instalar DBeaver.."
+        exit 1
+    fi
+fi
 
-#echo
-#echo "------"
-#echo
+echo
+echo "------"
+echo
 
 echo "Instalando Docker.."
 echo "---------------------"
@@ -116,9 +135,3 @@ then
 else
     echo "Erro ao instalar insomnia.."
 fi
-
-echo
-echo
-echo "--== INSTALAR TRELO PELA LOJA ==--"
-echo
-echo

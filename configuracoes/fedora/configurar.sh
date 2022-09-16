@@ -27,7 +27,7 @@ read inputApps
 
 if [[ $inputApps == "Y" ]];
 then
-    sudo bash instalar_aplicativos.sh;
+    bash instalar_aplicativos.sh;
 fi
 
 echo "-----------------------------"
@@ -48,7 +48,7 @@ then
         echo "Path do arquivo GO baixado?"
         read pathGo
 
-        sudo bash instalar_ambiente_desenvolvimento.sh pathGo;
+        bash instalar_ambiente_desenvolvimento.sh $pathGo;
     fi
 
 fi

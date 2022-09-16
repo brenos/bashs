@@ -56,4 +56,13 @@ then
 
 fi
 
+echo
+echo
+echo "--== INSTALAR DISCORD E BRAVE PELA LOJA ==--"
+echo "--== INSTALAR TRELO PELA LOJA ==--"
+echo "--== CONFIGURAR GIT TOKEN ==--"
+echo "--== CONFIGURAR ZSH COMO SHELL PADRAO ==--"
+echo
+echo
+
 exit 0
