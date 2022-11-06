@@ -122,6 +122,22 @@ echo
 echo "------"
 echo
 
+echo "Instalando MySQL no docker.."
+echo "---------------------"
+echo
+
+if docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=12345678 mysql;
+then
+    echo
+    echo "Postgre instalado no docker.."
+else
+    echo "Erro ao instalar postgre no docker.."
+fi
+
+echo
+echo "------"
+echo
+
 echo "Instalando Imsomnia.."
 echo "---------------------"
 echo
