@@ -138,6 +138,14 @@ echo
 echo "------"
 echo
 
+echo "Instalando MySQL Workbench.."
+echo "---------------------"
+echo
+
+echo
+echo "------"
+echo
+
 echo "Instalando Imsomnia.."
 echo "---------------------"
 echo
