@@ -28,10 +28,10 @@ fi
 
 echo "-----------------------------" >> $log
 
-echo "Instalar apps? [Y,n]"
+echo "Instalar apps? [s,N]"
 read inputApps
 
-if [[ $inputApps == "Y" ]];
+if [[ $inputApps == "s" ]];
 then
     echo "Path + arquivo .deb Discord baixado?"
     read pathDiscord 
@@ -40,18 +40,12 @@ fi
 
 echo "-----------------------------"
 
-echo "Instalar ambiente de desenvolvimento? [Y,n]"
+echo "Instalar ambiente de desenvolvimento? [s,N]"
 read input
 
-if [[ $input == "Y" ]];
+if [[ $input == "s" ]];
 then
-    echo "Path + arquivo zip GO baixado?"
-    read pathGo
-
-    echo "Path + arquivo zip DBeaver baixado?"
-    read pathDbeaver
-
-    bash instalar_ambiente_desenvolvimento.sh $log $pathGo $pathDbeaver;
+    bash instalar_ambiente_desenvolvimento.sh $log;
 fi
 
 echo >> $1

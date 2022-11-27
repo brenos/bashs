@@ -21,38 +21,50 @@ echo >> $1
 echo "------" >> $1
 echo >> $1
 
-echo "Instalando GO.." >> $1
+echo "Path do arquivo GO baixado? (Deixar em branco para NAO instalar)"
+read pathGo
 
-if rm -rf /usr/local/go; \
-tar -C /usr/local -xzf $2;
+if [[ $pathGo != "" ]];
 then
-    export PATH=$PATH:/usr/local/go/bin
-    go version
-    echo "GO instalado.." >> $1
-else
-    echo "Erro ao instalar GO.." >> $1
-    exit 1
+    echo "Instalando GO.." >> $1
+
+    if rm -rf /usr/local/go; \
+    tar -C /usr/local -xzf $pathGo;
+    then
+        export PATH=$PATH:/usr/local/go/bin
+        go version
+        echo "GO instalado.." >> $1
+    else
+        echo "Erro ao instalar GO.." >> $1
+        exit 1
+    fi
+
+    echo >> $1
+    echo "------" >> $1
+    echo >> $1
 fi
 
-echo >> $1
-echo "------" >> $1
-echo >> $1
+echo "Instalar DBeaver? [s,N]"
+read inputDbEaver
 
-echo "Instalando DBeaver.." >> $1
-
-if dnf install java-11-openjdk-devel \
-&& yum -y install wget \
-rpm -Uvh ./dbeaver-ce-latest-stable.x86_64.rpm;
+if [[ $inputDbEaver == "s" ]];
 then
-    echo "DBeaver instalado.." >> $1
-else
-    echo "Erro ao instalar DBeaver.." >> $1
-    exit 1
-fi
+    echo "Instalando DBeaver.." >> $1
 
-echo >> $1
-echo "------" >> $1
-echo >> $1
+    if dnf install java-11-openjdk-devel \
+    && yum -y install wget \
+    rpm -Uvh ./dbeaver-ce-latest-stable.x86_64.rpm;
+    then
+        echo "DBeaver instalado.." >> $1
+    else
+        echo "Erro ao instalar DBeaver.." >> $1
+        exit 1
+    fi
+
+    echo >> $1
+    echo "------" >> $1
+    echo >> $1
+fi
 
 echo "Instalando Docker.." >> $1
 
@@ -101,32 +113,44 @@ echo >> $1
 echo "------" >> $1
 echo >> $1
 
-echo "Instalando MySQL Workbench.." >> $1
-echo "---------------------" >> $1
-echo >> $1
+echo "Instalar MySQL Workbench? [s,N]"
+read inputMSQLWb
 
-if rpm -Uvh mysql80-community-release-* \
-&& yum install mysql-workbench;
+if [[ $inputMSQLWb == "s" ]];
 then
-    echo
-    echo "MySQLWorkbench instalado.." >> $1
-else
-    echo "Erro ao instalar MySQLWorkbench.." >> $1
+    echo "Instalando MySQL Workbench.." >> $1
+    echo "---------------------" >> $1
+    echo >> $1
+
+    if rpm -Uvh mysql80-community-release-* \
+    && yum install mysql-workbench;
+    then
+        echo
+        echo "MySQLWorkbench instalado.." >> $1
+    else
+        echo "Erro ao instalar MySQLWorkbench.." >> $1
+    fi
+
+    echo >> $1
+    echo "------" >> $1
+    echo >> $1
 fi
 
-echo >> $1
-echo "------" >> $1
-echo >> $1
+echo "Instalar Imsomnia? [s,N]"
+read inputImsomnia
 
-echo "Instalando Imsomnia.." >> $1
-
-if snap install insomnia;
+if [[ $inputImsomnia == "s" ]];
 then
-    echo "Imsomnia instalado.." >> $1
-else
-    echo "Erro ao instalar insomnia.." >> $1
-fi
+    echo "Instalando Imsomnia.." >> $1
 
-echo >> $1
-echo "------" >> $1
-echo >> $1
+    if snap install insomnia;
+    then
+        echo "Imsomnia instalado.." >> $1
+    else
+        echo "Erro ao instalar insomnia.." >> $1
+    fi
+
+    echo >> $1
+    echo "------" >> $1
+    echo >> $1
+fi

@@ -45,14 +45,17 @@ echo >> $1
 echo "------" >> $1
 echo >> $1
 
-if [[ $2 != "" ]];
+echo "Path + arquivo zip GO baixado? (Deixar em branco para NAO instalar)"
+read pathGo
+
+if [[ $pathGo != "" ]];
 then
     echo "Instalando GO.." >> $1
     echo "---------------------" >> $1
     echo >> $1
 
     if rm -rf /usr/local/go; \
-    tar -C /usr/local -xzf $2;
+    tar -C /usr/local -xzf $pathGo;
     then
         export PATH=$PATH:/usr/local/go/bin
         echo
@@ -66,13 +69,16 @@ then
     echo >> $1
 fi
 
-if [[ $3 != "" ]];
+echo "Path + arquivo zip DBeaver baixado? (Deixar em branco para NAO instalar)"
+read pathDbeaver
+
+if [[ $pathDbeaver != "" ]];
 then
     echo "Instalando DBeaver.." >> $1
     echo "---------------------" >> $1
     echo >> $1
 
-    if ./$3;
+    if ./$pathDbeaver;
     then
         echo "DBeaver instalado.." >> $1
     else
@@ -140,21 +146,27 @@ echo >> $1
 echo "------" >> $1
 echo >> $1
 
-echo "Instalando MySQL Workbench.." >> $1
-echo "---------------------" >> $1
-echo >> $1
+echo "Instalar MySQL Workbench? (s,N)"
+read installMySQLWb
 
-if apt install mysql-workbench;
+if [[ $installMySQLWb == "s" ]];
 then
-    echo
-    echo "MySQLWorkbench instalado.." >> $1
-else
-    echo "Erro ao instalar MySQLWorkbench.." >> $1
-fi
+    echo "Instalando MySQL Workbench.." >> $1
+    echo "---------------------" >> $1
+    echo >> $1
 
-echo >> $1
-echo "------" >> $1
-echo >> $1
+    if apt install mysql-workbench;
+    then
+        echo
+        echo "MySQLWorkbench instalado.." >> $1
+    else
+        echo "Erro ao instalar MySQLWorkbench.." >> $1
+    fi
+
+    echo >> $1
+    echo "------" >> $1
+    echo >> $1
+fi
 
 echo "Instalando Imsomnia.." >> $1
 echo "---------------------" >> $1

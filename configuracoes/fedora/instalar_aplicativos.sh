@@ -32,19 +32,6 @@ echo >> $1
 echo "------" >> $1
 echo >> $1
 
-echo "Instalando oh my zsh.." >> $1
-
-if sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
-then
-    echo "Oh my zsh instalado.." >> $1
-else
-    echo "Erro ao instalar oh my zsh.." >> $1
-fi
-
-echo >> $1
-echo "------" >> $1
-echo >> $1
-
 echo "Instalando Discord.." >> $1
 
 if dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm \

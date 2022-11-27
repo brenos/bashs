@@ -30,30 +30,40 @@ fi
 
 echo "-----------------------------" >> $log
 
-echo "Instalar apps? [Y,n]"
+echo "Instalar apps? [s,N]"
 read inputApps
 
-if [[ $inputApps == "Y" ]];
+if [[ $inputApps == "s" ]];
 then
     bash instalar_aplicativos.sh $log;
 fi
 
 echo "-----------------------------" >> $log
 
-echo "Instalar ambiente dev? [Y,n]"
+echo "Instalar ambiente dev? [s,N]"
 read input
 
-if [[ $input == "Y" ]];
+if [[ $input == "s" ]];
 then
-    echo "Path do arquivo GO baixado?"
-    read pathGo
-
-    bash instalar_ambiente_desenvolvimento.sh $log $pathGo;
+    bash instalar_ambiente_desenvolvimento.sh $log;
 fi
 
 echo >> $log
 echo >> $log
 echo "Nao esqueca de ver o site https://docs.fedoraproject.org/en-US/quick-docs/configuring-xorg-as-default-gnome-session/" >> $log
 echo >> $log
+
+echo "Instalando Oh my zsh.."
+
+if sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
+then
+    echo "Oh my zsh instalado.."
+else
+    echo "Erro ao instalar oh my zsh.."
+fi
+
+echo
+echo "------"
+echo
 
 exit 0
