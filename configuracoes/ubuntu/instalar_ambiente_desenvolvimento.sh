@@ -1,32 +1,31 @@
 #!/bin/bash
 
-echo "-----------"
-echo "Apps Dev"
-echo "-----------"
+echo "-----------" >> $1
+echo "Apps Dev" >> $1
+echo "-----------" >> $1
 
-echo
-echo "Instalando git.."
-echo "---------------------"
-echo
+echo >> $1
+echo "Instalando git.." >> $1
+echo "---------------------" >> $1
+echo  >> $1
 
 if apt install git;
 then
     git config --global user.name "brenos"
     git config --global user.email "soubreno@gmail.com"
     echo
-    echo "Git instalado.."
+    echo "Git instalado.." >> $1
 else
-    echo "Erro ao instalar git.."
-    exit 1
+    echo "Erro ao instalar git.." >> $1
 fi
 
-echo
-echo "------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
-echo "Instalando VS Code.."
-echo "---------------------"
-echo
+echo "Instalando VS Code.." >> $1
+echo "---------------------" >> $1
+echo >> $1
 
 if wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg \
 && install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg \
@@ -37,55 +36,59 @@ if wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor >
 && apt install code;
 then
     echo
-    echo "VS Code instalado.."
+    echo "VS Code instalado.." >> $1
 else
-    echo "Erro ao instalar VS Code.."
-    exit 1
+    echo "Erro ao instalar VS Code.." >> $1
 fi
 
-echo
-echo "------"
-echo
-
-echo "Instalando GO.."
-echo "---------------------"
-echo
-
-if rm -rf /usr/local/go; \
-tar -C /usr/local -xzf $1;
-then
-    export PATH=$PATH:/usr/local/go/bin
-    echo
-    echo "GO instalado.."
-else
-    echo "Erro ao instalar GO.."
-    exit 1
-fi
-
-echo
-echo "------"
-echo
-
-echo "Instalando DBeaver.."
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
 if [[ $2 != "" ]];
 then
-    if ./$2;
+    echo "Instalando GO.." >> $1
+    echo "---------------------" >> $1
+    echo >> $1
+
+    if rm -rf /usr/local/go; \
+    tar -C /usr/local -xzf $2;
     then
-        echo "DBeaver instalado.."
+        export PATH=$PATH:/usr/local/go/bin
+        echo
+        echo "GO instalado.." >> $1
     else
-        echo "Erro ao instalar DBeaver.."
-        exit 1
+        echo "Erro ao instalar GO.." >> $1
     fi
+
+    echo >> $1
+    echo "------" >> $1
+    echo >> $1
 fi
 
-echo
-echo "------"
-echo
+if [[ $3 != "" ]];
+then
+    echo "Instalando DBeaver.." >> $1
+    echo "---------------------" >> $1
+    echo >> $1
 
-echo "Instalando Docker.."
-echo "---------------------"
-echo
+    if ./$3;
+    then
+        echo "DBeaver instalado.." >> $1
+    else
+        echo "Erro ao instalar DBeaver.." >> $1
+        exit 1
+    fi
+
+    echo >> $1
+    echo "------" >> $1
+    echo >> $1
+fi
+
+
+echo "Instalando Docker.." >> $1
+echo "---------------------" >> $1
+echo >> $1
 
 if apt-get remove docker docker-engine docker.io containerd runc; \
 apt-get install ca-certificates gnupg lsb-release \
@@ -96,66 +99,73 @@ apt-get install ca-certificates gnupg lsb-release \
 && apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin;
 then
     echo
-    echo "Docker instalado.."
+    echo "Docker instalado.." >> $1
 else
-    echo "Erro ao instalar Docker.."
-    exit 1
+    echo "Erro ao instalar Docker.." >> $1
 fi
 
-echo
-echo "------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
-echo "Instalando Postgre no docker.."
-echo "---------------------"
-echo
+echo "Instalando Postgre no docker.." >> $1
+echo "---------------------" >> $1
+echo >> $1
 
 if docker run --name postgres -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres;
 then
     echo
-    echo "Postgre instalado no docker.."
+    echo "Postgre instalado no docker.." >> $1
 else
-    echo "Erro ao instalar postgre no docker.."
+    echo "Erro ao instalar postgre no docker.." >> $1
 fi
 
-echo
-echo "------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
-echo "Instalando MySQL no docker.."
-echo "---------------------"
-echo
+echo "Instalando MySQL no docker.." >> $1
+echo "---------------------" >> $1
+echo >> $1
 
 if docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=12345678 mysql;
 then
     echo
-    echo "Postgre instalado no docker.."
+    echo "Postgre instalado no docker.." >> $1
 else
-    echo "Erro ao instalar postgre no docker.."
+    echo "Erro ao instalar postgre no docker.." >> $1
 fi
 
-echo
-echo "------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
-echo "Instalando MySQL Workbench.."
-echo "---------------------"
-echo
+echo "Instalando MySQL Workbench.." >> $1
+echo "---------------------" >> $1
+echo >> $1
 
-echo
-echo "------"
-echo
+if apt install mysql-workbench;
+then
+    echo
+    echo "MySQLWorkbench instalado.." >> $1
+else
+    echo "Erro ao instalar MySQLWorkbench.." >> $1
+fi
 
-echo "Instalando Imsomnia.."
-echo "---------------------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
+
+echo "Instalando Imsomnia.." >> $1
+echo "---------------------" >> $1
+echo >> $1
 
 if echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ default all" | tee -a /etc/apt/sources.list.d/insomnia.list \
 && apt-get update \
 && apt-get install insomnia;
 then
     echo
-    echo "Imsomnia instalado.."
+    echo "Imsomnia instalado.." >> $1
 else
-    echo "Erro ao instalar insomnia.."
+    echo "Erro ao instalar insomnia.." >> $1
 fi

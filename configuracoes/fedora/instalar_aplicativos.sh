@@ -1,76 +1,72 @@
 #!/bin/bash
 
-echo "-----------"
-echo "Apps"
-echo "-----------"
+echo "-----------" >> $1
+echo "Apps" >> $1
+echo "-----------" >> $1
 
-echo "Instalando wget, curl e gpg.."
+echo "Instalando wget, curl e gpg.." >> $1
 
 if dnf install wget curl gpg;
 then
-    echo "Wget, curl e gpg instalados.."
+    echo "Wget, curl e gpg instalados.." >> $1
 else
-    echo "Erro ao instalar wget, curl e gpg.."
+    echo "Erro ao instalar wget, curl e gpg.." >> $1
     exit 1
 fi
 
-echo
-echo "------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
-echo "Instalando zsh.."
+echo "Instalando zsh.." >> $1
 
 if dnf install zsh \
 && usermod -s "$(which zsh)" $USER;
 then
-    echo "Zsh instalado.."
+    echo "Zsh instalado.." >> $1
 else
-    echo "Erro ao instalar zsh.."
-    exit 1
+    echo "Erro ao instalar zsh.." >> $1
 fi
 
-echo
-echo "------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
-echo "Instalando oh my zsh.."
+echo "Instalando oh my zsh.." >> $1
 
 if sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
 then
-    echo "Oh my zsh instalado.."
+    echo "Oh my zsh instalado.." >> $1
 else
-    echo "Erro ao instalar oh my zsh.."
-    exit 1
+    echo "Erro ao instalar oh my zsh.." >> $1
 fi
 
-echo
-echo "------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
-echo "Instalando Discord.."
+echo "Instalando Discord.." >> $1
 
 if dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm \
 && dnf update \
 && dnf install discord;
 then
-    echo "Discord instalado.."
+    echo "Discord instalado.." >> $1
 else
-    echo "Erro ao instalar Discord.."
-    exit 1
+    echo "Erro ao instalar Discord.." >> $1
 fi
 
-echo
-echo "------"
-echo
+echo >> $1
+echo "------" >> $1
+echo >> $1
 
-echo "Instalando Brave.."
+echo "Instalando Brave.." >> $1
 
-if rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc; \
- dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ \
+if dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/ \
+&& rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc \
 && dnf install brave-browser -y;
 then
-    echo "Bravo instalado.."
+    echo "Bravo instalado.." >> $1
 else
-    echo "Erro ao instalar Brave.."
-    exit 1
+    echo "Erro ao instalar Brave.." >> $1
 fi

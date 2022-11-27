@@ -5,17 +5,16 @@ echo "Apps"
 echo "-----------"
 
 echo
-echo "Instalando wget e curl.."
+echo "Instalando wget, curl e apt-transport-https.."
 echo "---------------------"
 echo
 
-if apt install wget curl;
+if apt install wget curl apt-transport-https;
 then
     echo
-    echo "Wget e curl instalados.."
+    echo "Wget, curl e apt-transport-https instalados.."
 else
-    echo "Erro ao instalar wget e curl.."
-    exit 1
+    echo "Erro ao instalar wget, curl e apt-transport-https.."
 fi
 
 echo
@@ -32,7 +31,6 @@ then
     echo "Gpg instalados.."
 else
     echo "Erro ao instalar gpg.."
-    exit 1
 fi
 
 echo
@@ -49,7 +47,6 @@ then
     echo "Zsh instalados.."
 else
     echo "Erro ao instalar zsh.."
-    exit 1
 fi
 
 echo
@@ -66,6 +63,39 @@ then
     echo "Oh my zsh instalado.."
 else
     echo "Erro ao instalar oh my zsh.."
-    exit 1
 fi
 
+echo
+echo "------"
+echo
+
+echo "Instalando Brave Browser.."
+echo "---------------------"
+echo
+
+if curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg \
+&& echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list \
+&& apt update \
+&& apt install brave-browser;
+then
+    echo 
+    echo "Brave instalado.."
+else
+    echo "Erro ao instalar Brave.."
+fi
+
+echo
+echo "------"
+echo
+
+echo "Instalando Discord.."
+echo "---------------------"
+echo
+
+if apt install $1;
+then
+    echo 
+    echo "Discord instalado.."
+else
+    echo "Erro ao instalar Discord.."
+fi
