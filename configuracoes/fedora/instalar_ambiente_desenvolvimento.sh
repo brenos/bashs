@@ -44,6 +44,22 @@ then
     echo >> $1
 fi
 
+
+echo "Instalando Flutter.." >> $1
+
+if snap install flutter --classic;
+then
+    echo "Flutter instalado.." >> $1
+else
+    echo "Erro ao instalar Flutter.." >> $1
+    exit 1
+fi
+
+echo >> $1
+echo "------" >> $1
+echo >> $1
+
+
 echo "Instalar DBeaver? [s,N]"
 read inputDbEaver
 

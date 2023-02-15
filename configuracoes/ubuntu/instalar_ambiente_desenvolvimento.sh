@@ -69,6 +69,23 @@ then
     echo >> $1
 fi
 
+echo "Instalando Flutter.." >> $1
+echo "---------------------" >> $1
+echo >> $1
+
+if snap install flutter --classic;
+then
+    echo
+    echo "Flutter instalado.." >> $1
+else
+    echo "Erro ao instalar Flutter.." >> $1
+fi
+
+echo >> $1
+echo "------" >> $1
+echo >> $1
+
+
 echo "Path + arquivo zip DBeaver baixado? (Deixar em branco para NAO instalar)"
 read pathDbeaver
 
