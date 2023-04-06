@@ -101,7 +101,7 @@ read input
 
 if [[ $input == "s" ]];
 then
-        echo "-----------" >> $log
+    echo "-----------" >> $log
     echo "Apps Dev" >> $log
     echo "-----------" >> $log
 
@@ -130,7 +130,7 @@ then
         echo "Instalando GO.." >> $log
         if [ -d "/usr/local/go" ]
         then
-            rm -rf /usr/local/go;
+            rm -rf /usr/local/go
         fi
 
         if  tar -C /usr/local -xzf $pathGo;
