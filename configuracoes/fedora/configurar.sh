@@ -136,7 +136,6 @@ then
         if tar -C /usr/local -xzf $pathGo;
         then
             export PATH=$PATH:/usr/local/go/bin
-            go version
             echo "GO instalado.." >> $log
         else
             echo "Erro ao instalar GO.." >> $log
