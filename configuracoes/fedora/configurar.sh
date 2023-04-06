@@ -128,9 +128,12 @@ then
     if [[ $pathGo != "" ]];
     then
         echo "Instalando GO.." >> $1
+        if [ -d "/usr/local/go" ]
+        then
+            rm -rf /usr/local/go;
+        fi
 
-        if rm -rf /usr/local/go; \
-        tar -C /usr/local -xzf $pathGo;
+        if  tar -C /usr/local -xzf $pathGo;
         then
             export PATH=$PATH:/usr/local/go/bin
             go version
@@ -153,9 +156,9 @@ then
     then
         echo "Instalando DBeaver.." >> $1
 
-        if dnf install java-11-openjdk-devel \
+        if dnf java-17-openjdk-devel \
         && yum -y install wget \
-        rpm -Uvh ./dbeaver-ce-latest-stable.x86_64.rpm;
+        && rpm -Uvh ./dbeaver-ce-latest-stable.x86_64.rpm;
         then
             echo "DBeaver instalado.." >> $1
         else
