@@ -8,13 +8,13 @@ Project then I used to configure my linux SO.
 #### Fedora :white_check_mark::
 
 ```bash {cmd}
-sudo sh -c "$(curl -fsSL https://github.com/brenos/bashs/configuracoes/fedora/configurar.sh)"
+wget -O - https://github.com/brenos/bashs/configuracoes/fedora/configurar.sh | sudo bash
 ```
 
 #### Ubuntu :red_circle::
 
 ```bash {cmd}
-sudo sh -c "$(curl -fsSL https://github.com/brenos/bashs/configuracoes/ubuntu/configurar.sh)"
+wget -O - https://github.com/brenos/bashs/configuracoes/ubuntu/configurar.sh | sudo bash
 ```
 
 ##### Notes:
