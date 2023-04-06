@@ -184,6 +184,7 @@ then
         && dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin \
         && systemctl start docker;
         then
+            usermod -aG docker $USER
             echo "Docker instalado.." >> $log
         else
             echo "Erro ao instalar Docker.." >> $log
