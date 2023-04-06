@@ -171,47 +171,54 @@ then
         echo >> $log
     fi
 
-    echo "Instalando Docker.." >> $log
+    echo "Instalar Docker? [s,N]"
+    read inputDocker
 
-    if dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine; \
-    dnf -y install dnf-plugins-core \
-    && dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo \
-    && dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin \
-    && systemctl start docker;
+    if [[ $inputDocker == "s" ]];
     then
-        echo "Docker instalado.." >> $log
-    else
-        echo "Erro ao instalar Docker.." >> $log
-        exit 1
-    fi
 
-    echo >> $log
-    echo "------" >> $log
-    echo >> $log
+        echo "Instalando Docker.." >> $log
 
-    echo "Instalando Postgre no docker.." >> $log
+        if dnf remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine; \
+        dnf -y install dnf-plugins-core \
+        && dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo \
+        && dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin \
+        && systemctl start docker;
+        then
+            echo "Docker instalado.." >> $log
+        else
+            echo "Erro ao instalar Docker.." >> $log
+            exit 1
+        fi
 
-    if docker run --name postgres -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres;
-    then
-        echo "Postgre instalado no docker.." >> $log
-    else
-        echo "Erro ao instalar postgre no docker.." >> $log
-    fi
+        echo >> $log
+        echo "------" >> $log
+        echo >> $log
 
-    echo >> $log
-    echo "------" >> $log
-    echo >> $log
+        echo "Instalando Postgre no docker.." >> $log
 
-    echo "Instalando MySQL no docker.." >> $log
-    echo "---------------------" >> $log
-    echo >> $log
+        if docker run --name postgres -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres postgres;
+        then
+            echo "Postgre instalado no docker.." >> $log
+        else
+            echo "Erro ao instalar postgre no docker.." >> $log
+        fi
 
-    if docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=12345678 mysql;
-    then
-        echo
-        echo "Postgre instalado no docker.." >> $log
-    else
-        echo "Erro ao instalar postgre no docker.." >> $log
+        echo >> $log
+        echo "------" >> $log
+        echo >> $log
+
+        echo "Instalando MySQL no docker.." >> $log
+        echo "---------------------" >> $log
+        echo >> $log
+
+        if docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=12345678 mysql;
+        then
+            echo
+            echo "Postgre instalado no docker.." >> $log
+        else
+            echo "Erro ao instalar postgre no docker.." >> $log
+        fi
     fi
 
     echo >> $log
