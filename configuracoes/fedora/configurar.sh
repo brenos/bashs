@@ -156,8 +156,8 @@ then
     then
         echo "Instalando DBeaver.." >> $log
 
-        if dnf install java-17-openjdk-devel \
-        && yum -y install wget \
+        if dnf install java-latest-openjdk-devel.x86_64 \
+        && wget https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm \
         && rpm -Uvh ./dbeaver-ce-latest-stable.x86_64.rpm;
         then
             echo "DBeaver instalado.." >> $log
