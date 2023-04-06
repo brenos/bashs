@@ -133,7 +133,7 @@ then
             rm -rf /usr/local/go
         fi
 
-        if  tar -C /usr/local -xzf $pathGo;
+        if tar -C /usr/local -xzf $pathGo;
         then
             export PATH=$PATH:/usr/local/go/bin
             go version
